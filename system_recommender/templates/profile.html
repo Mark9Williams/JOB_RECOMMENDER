@@ -1,7 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h2>Dashboard</h2>
 <h1 class="title">
   Welcome, {{ name }}!
 </h1>
+<br/><br/>
+<div class="card">
+  <div class="card-header">
+    {{ current_user.name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Welcome to Dashboard!!</h5>
+    <p class="card-text">
+      <strong>Name:</strong>
+      {{ current_user.name}}<br/>
+      <strong>Username:</strong>
+      {{ current_user.username}}<br/>
+      <strong>User Id:</strong>
+      {{ current_user.userid}}<br/>
+      <strong>Email:</strong>
+      {{ current_user.email}}<br/>
+      <strong>Job preferences:</strong>
+      {{ current_user.job_preferences}}<br/>
+      <strong>Last Update:</strong>
+      {{ current_user.updated_at}}<br/>
+      <strong>Created at:</strong>
+      {{ current_user.date_added}}<br/>
+    </p>
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">Logout</a>
+  </div>
+</div>
+
 {% endblock %}
