@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Dashboard</h2>
-<h1 class="title">
+<h1>User Profile</h1>
+<h2 class="title">
   Welcome, {{ name }}!
-</h1>
+</h2>
 <br/><br/>
 <div class="card">
   <div class="card-header">
     {{ current_user.name }}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Welcome to Dashboard!!</h5>
+    <h5 class="card-title">Welcome to User Profile!!</h5>
     <p class="card-text">
       <strong>Name:</strong>
       {{ current_user.name}}<br/>
@@ -21,14 +21,15 @@
       {{ current_user.userid}}<br/>
       <strong>Email:</strong>
       {{ current_user.email}}<br/>
-      <strong>Job preferences:</strong>
-      {{ current_user.job_preferences}}<br/>
-      <strong>Last Update:</strong>
-      {{ current_user.updated_at}}<br/>
+      <strong>Resume:</strong> {{ current_user.profile.resume }}<br/>
+      <strong>Skills:</strong> {{ current_user.profile.skills }}<br/>
+      <strong>Experience:</strong> {{ current_user.profile.experience }}<br/>
+      <strong>Job Preferences:</strong> {{ current_user.profile.job_preferences }}<br/>
+      <strong>Last Updated:</strong> {{ current_user.profile.updated_at }}<br/>
       <strong>Created at:</strong>
       {{ current_user.date_added}}<br/>
     </p>
-    <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">Logout</a>
+    <a href="{{ url_for('main.update_profile') }}" class="btn btn-primary">Update Profile</a>
   </div>
 </div>
 

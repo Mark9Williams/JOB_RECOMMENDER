@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Update Your Profile</h1>
+    <form method="POST" action="{{ url_for('main.update_profile') }}">
+        {{ form.hidden_tag() }}
+        
+        <div>
+            <label for="resume">Resume</label>
+            {{ form.resume(class="form-control") }}
+        </div>
+        
+        <div>
+            <label for="skills">Skills</label>
+            {{ form.skills(class="form-control") }}
+        </div>
+
+        <div>
+            <label for="experience">Experience</label>
+            {{ form.experience(class="form-control") }}
+        </div>
+        <div>
+            <label for="job_preferences">Job Preferences</label>
+            {{ form.job_preferences(class="form-control") }}
+        </div>
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+{% endblock %}

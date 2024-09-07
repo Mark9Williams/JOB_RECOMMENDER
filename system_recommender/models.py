@@ -13,9 +13,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    job_preferences = db.Column(db.Text)  # JSON or text field for preferences
     date_added = db.Column(db.DateTime, default=datetime.now())
-    updated_at = db.Column(db.DateTime, onupdate=datetime.now())
     
     # Relationships
     profile = db.relationship('Profile', back_populates='user', uselist=False)  # One-to-One
@@ -32,9 +30,16 @@ class Profile(db.Model):
     resume = db.Column(db.Text)
     skills = db.Column(db.Text)
     experience = db.Column(db.Text)
+    job_preferences = db.Column(db.Text)  # JSON or text field for preferences
+    updated_at = db.Column(db.DateTime(), default=datetime.now())
 
     # Relationship back to the User
     user = db.relationship('User', back_populates='profile')  # One-to-One
+
+    def last_seen(self):
+        self.last_seen = datetime.utcnow()
+        db.session.add(self)
+        db.session.commit()
 
 class Recommendations(db.Model):
     __tablename__ = 'recommendations'
